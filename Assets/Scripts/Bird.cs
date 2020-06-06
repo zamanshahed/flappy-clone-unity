@@ -15,6 +15,7 @@ public class Bird : MonoBehaviour {
 	void Update () {
 		if(Input.GetMouseButtonDown(0))
         {
+            rb.velocity = Vector2.zero;
             //Jump
             rb.velocity = new Vector2(rb.velocity.x, speed);
         }
