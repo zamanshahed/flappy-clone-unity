@@ -2,10 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Bird : MonoBehaviour {
 
     Rigidbody2D rb;
     public float speed;
+
+    public Score score;
 
     int angle;
     int maxAngle = 20;
@@ -48,5 +51,12 @@ public class Bird : MonoBehaviour {
             }
         }
         transform.rotation = Quaternion.Euler(0, 0, angle);
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("Obstacles")) {
+            score.Scored();
+            Debug.Log("Scored");
+        }
     }
 }
