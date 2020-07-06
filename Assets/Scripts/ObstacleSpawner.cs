@@ -14,12 +14,12 @@ public class ObstacleSpawner : MonoBehaviour {
     float randY;
     // Use this for initialization
     void Start () {
-        InstantiateObstacles();
+        //InstantiateObstacles();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-        if (GameManager.gameOver == false)
+        if (GameManager.gameOver == false && GameManager.gameStarted==true)
         {
             timer += Time.deltaTime;
             if (timer >= maxTime)
@@ -29,7 +29,7 @@ public class ObstacleSpawner : MonoBehaviour {
             }
         }        
 	}
-    void InstantiateObstacles() {
+    public void InstantiateObstacles() {
         randY = Random.Range(minY, maxY);
         GameObject newObstacle = Instantiate(obstacle);
         newObstacle.transform.position = new Vector2(transform.position.x, randY);

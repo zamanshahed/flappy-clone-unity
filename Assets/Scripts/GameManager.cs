@@ -6,6 +6,8 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour {
 
     public static bool gameOver;
+    public static bool gameStarted;
+
     public GameObject GameOverUI;
 
     public static Vector2 bottomLeft;
@@ -18,12 +20,19 @@ public class GameManager : MonoBehaviour {
 
     void Start () {
         gameOver = false;
+        gameStarted = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+    public void GameHasStarted()
+    {
+        gameStarted = true;
+    }
+
     public void GameOver()
     {
         gameOver = true;

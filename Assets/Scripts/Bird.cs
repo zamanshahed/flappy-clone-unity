@@ -13,6 +13,7 @@ public class Bird : MonoBehaviour {
      
     public Score score;
     public GameManager gameManager;
+    public ObstacleSpawner obstacleSpawner;
 
     int angle;
     int maxAngle = 20;
@@ -24,23 +25,37 @@ public class Bird : MonoBehaviour {
         rb = GetComponent<Rigidbody2D>();
         sp = GetComponent<SpriteRenderer>();
         anim = GetComponent<Animator>();
-	}
+        rb.gravityScale = 0;        
+    }
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetMouseButtonDown(0) && GameManager.gameOver==false)
-        {
-            rb.velocity = Vector2.zero;
-            //Jump
-            rb.velocity = new Vector2(rb.velocity.x, speed);
+            if (Input.GetMouseButtonDown(0) && GameManager.gameOver == false )
+            {
+                if (GameManager.gameStarted == false)
+                {
+                    rb.gravityScale = 0.8f;
+                    Flap();
+                    obstacleSpawner.InstantiateObstacles();
+                    gameManager.GameHasStarted();
+                }
+                else
+                {
+                    Flap();
+                }
+
         }
-        //if (Input.GetMouseButtonUp(0))
-        //{
-        //    rb.velocity = new Vector2(rb.velocity.x, speed);
-        //}
-        BirdRotation();
-      
+        
+        BirdRotation();      
 	}
+
+    void Flap()
+    {
+        rb.velocity = Vector2.zero;
+        //Jump
+        rb.velocity = new Vector2(rb.velocity.x, speed);
+    }
+
     void BirdRotation()
     {
         if (rb.velocity.y > 0)
