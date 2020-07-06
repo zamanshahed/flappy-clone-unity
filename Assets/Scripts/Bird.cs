@@ -6,22 +6,29 @@ using UnityEngine;
 public class Bird : MonoBehaviour {
 
     Rigidbody2D rb;
+    SpriteRenderer sp;
+    Animator anim;
     public float speed;
-
+    public Sprite birdDead;
+     
     public Score score;
+    public GameManager gameManager;
 
     int angle;
     int maxAngle = 20;
     int minAngle = -90;
 
+    bool touchGround;
 
 	void Start () {
-        rb = GetComponent<Rigidbody2D>();	
+        rb = GetComponent<Rigidbody2D>();
+        sp = GetComponent<SpriteRenderer>();
+        anim = GetComponent<Animator>();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		if(Input.GetMouseButtonDown(0))
+		if(Input.GetMouseButtonDown(0) && GameManager.gameOver==false)
         {
             rb.velocity = Vector2.zero;
             //Jump
@@ -50,7 +57,10 @@ public class Bird : MonoBehaviour {
                 angle = angle - 3;
             }
         }
-        transform.rotation = Quaternion.Euler(0, 0, angle);
+        if (touchGround == false)
+        {
+            transform.rotation = Quaternion.Euler(0, 0, angle);
+        }        
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -58,5 +68,35 @@ public class Bird : MonoBehaviour {
             score.Scored();
             Debug.Log("Scored");
         }
+        else if(collision.CompareTag("Pipe"))
+        {
+            //game over
+            gameManager.GameOver();
+            GameOverBird();
+        }
+    }
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            if (GameManager.gameOver == false)
+            {
+                //game over
+                gameManager.GameOver();
+                GameOverBird();
+            }
+            else
+            {
+                //something..
+                GameOverBird();
+            }
+        }        
+    }
+    public void GameOverBird()
+    {
+        touchGround = true;
+        sp.sprite = birdDead;
+        anim.enabled = false;
+        transform.rotation = Quaternion.Euler(0, 0, -90f);
     }
 }

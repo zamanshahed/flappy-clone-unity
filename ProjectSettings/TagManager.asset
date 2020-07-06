@@ -50,6 +50,9 @@ TagManager:
   - name: MidGround
     uniqueID: 4246612287
     locked: 0
+  - name: Bird
+    uniqueID: 8550123
+    locked: 0
   - name: ForeGround
     uniqueID: 3968544001
     locked: 0

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class GameManager : MonoBehaviour {
 
+    public static bool gameOver;
+
     public static Vector2 bottomLeft;
     // Use this for initialization
 
@@ -13,11 +15,15 @@ public class GameManager : MonoBehaviour {
     }
 
     void Start () {
-		
+        gameOver = false;
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+    public void GameOver()
+    {
+        gameOver = true;
+    }
 }
