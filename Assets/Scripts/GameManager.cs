@@ -7,8 +7,12 @@ public class GameManager : MonoBehaviour {
 
     public static bool gameOver;
     public static bool gameStarted;
+    public static bool gamePaused;
 
+    public GameObject ScoreTxt;
     public GameObject GameOverUI;
+    public GameObject GetReadyImg;
+    public GameObject pauseBtn;
 
     public static Vector2 bottomLeft;
     // Use this for initialization
@@ -21,6 +25,7 @@ public class GameManager : MonoBehaviour {
     void Start () {
         gameOver = false;
         gameStarted = false;
+        gamePaused = false;
 	}
 	
 	// Update is called once per frame
@@ -31,12 +36,17 @@ public class GameManager : MonoBehaviour {
     public void GameHasStarted()
     {
         gameStarted = true;
+        ScoreTxt.SetActive(true);
+        GetReadyImg.SetActive(false);
+        pauseBtn.SetActive(true);
     }
 
     public void GameOver()
     {
         gameOver = true;
         GameOverUI.SetActive(true);
+        ScoreTxt.SetActive(false);
+        pauseBtn.SetActive(false);
     }
     public void OkBtnPressed()
     {

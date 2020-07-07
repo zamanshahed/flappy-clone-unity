@@ -30,7 +30,7 @@ public class Bird : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-            if (Input.GetMouseButtonDown(0) && GameManager.gameOver == false )
+            if (Input.GetMouseButtonDown(0) && GameManager.gameOver == false && GameManager.gamePaused == false)
             {
                 if (GameManager.gameStarted == false)
                 {
@@ -60,18 +60,25 @@ public class Bird : MonoBehaviour {
     {
         if (rb.velocity.y > 0)
         {
+            rb.gravityScale = 0.8f;
             if (angle <= maxAngle)
             {
                 angle = angle + 4;
             }
         }
-        else if (rb.velocity.y < 1.3f)
+        else if (rb.velocity.y < 0)
         {
-            if (angle >= minAngle)
+            rb.gravityScale = 0.6f;
+
+            if (rb.velocity.y < -1.3f)
             {
-                angle = angle - 3;
+                if (angle >= minAngle)
+                {
+                    angle = angle - 3;
+                }
             }
         }
+
         if (touchGround == false)
         {
             transform.rotation = Quaternion.Euler(0, 0, angle);
