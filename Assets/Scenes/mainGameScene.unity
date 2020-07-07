@@ -226,6 +226,7 @@ MonoBehaviour:
   birdDead: {fileID: 21300018, guid: 9c0ba3295aa5fb7419ee77639f8a06e2, type: 3}
   score: {fileID: 675265116}
   gameManager: {fileID: 1921459139}
+  obstacleSpawner: {fileID: 1085642935}
 --- !u!61 &54176224
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -663,6 +664,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 02819aadae5a6584a83160605513675b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  panelScore: {fileID: 2110188380}
+  panelHighScore: {fileID: 1928047195}
 --- !u!114 &675265117
 MonoBehaviour:
   m_ObjectHideFlags: 0
