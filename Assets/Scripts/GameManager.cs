@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour {
     public GameObject GameOverUI;
     public GameObject GetReadyImg;
     public GameObject pauseBtn;
+    public GameObject menuBtn;
 
     public static Vector2 bottomLeft;
     // Use this for initialization
@@ -50,6 +51,11 @@ public class GameManager : MonoBehaviour {
     }
     public void OkBtnPressed()
     {
-        SceneManager.LoadScene(0);
+        SceneManager.LoadScene("GamePlay");
+    }
+
+    public void OnMenuBtnPressed()
+    {
+        SceneManager.LoadScene("Menu");
     }
 }
