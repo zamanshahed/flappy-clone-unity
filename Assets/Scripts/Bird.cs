@@ -8,6 +8,8 @@ public class Bird : MonoBehaviour {
     Rigidbody2D rb;
     SpriteRenderer sp;
     Animator anim;
+    public Animator parentBirdAnim;
+
     public float speed;
     public Sprite birdDead;
      
@@ -34,6 +36,7 @@ public class Bird : MonoBehaviour {
             {
                 if (GameManager.gameStarted == false)
                 {
+                    parentBirdAnim.enabled = false;
                     rb.gravityScale = 0.8f;
                     Flap();
                     obstacleSpawner.InstantiateObstacles();
