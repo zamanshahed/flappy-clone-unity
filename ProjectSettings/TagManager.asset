@@ -59,3 +59,6 @@ TagManager:
   - name: Canvas
     uniqueID: 790996427
     locked: 0
+  - name: BlackFade
+    uniqueID: 349064771
+    locked: 0
